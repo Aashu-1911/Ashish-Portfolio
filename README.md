@@ -22,7 +22,7 @@ A **modern and responsive** portfolio website built with the **MERN stack** (Mon
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Aabi0207/Portfolio-Website.git
+   git clone https://github.com/Aashu-1911/Ashish-Portfolio.git
    cd Portfolio-Website
    ```
 
