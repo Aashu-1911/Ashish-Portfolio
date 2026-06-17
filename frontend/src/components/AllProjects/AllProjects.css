@@ -1,0 +1,91 @@
+.ap-all-projects {
+  text-align: center;
+}
+
+.ap-all-projects h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 800;
+  color: #1D3557;
+}
+
+.ap-projects-container {
+  width: 70vw; /* Use 70% of the viewport width */
+  max-width: 1200px; /* Limit container width on larger screens */
+  margin: 0 auto; /* Center container */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Equal width for columns */
+  gap: 20px; /* Spacing between columns */
+}
+
+.ap-project-domain {
+  padding: 15px;
+  border-radius: 20px; /* Increased border radius */
+}
+
+.ap-project-domain h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  word-wrap: break-word; /* Prevent text overflow */
+}
+
+.ap-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ap-project-capsule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  color: #1D3557;
+  padding: 15px 20px;
+  border-radius: 20px; /* Increased border radius */
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.ap-project-capsule:hover {
+  background-color: #1D3557;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ap-project-title {
+  flex: 0 0 70%; /* Use 70% of space for text */
+  text-align: left;
+  word-wrap: break-word; /* Wrap text to prevent overflow */
+  margin-right: 10px; /* Add spacing between text and arrow */
+}
+
+.ap-arrow {
+  flex: 0 0 30%; /* Use 30% of space for arrow */
+  font-size: 1rem; /* Smaller arrow size */
+  color: inherit;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .ap-projects-container {
+    grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns for smaller screens */
+  }
+
+  .ap-project-domain {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ap-projects-container {
+    grid-template-columns: 1fr; /* Single column layout for very small screens */
+  }
+}

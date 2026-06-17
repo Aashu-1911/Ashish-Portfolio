@@ -1,0 +1,32 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #A8DADC; /* Replace with theme's background color */
+  /* font-family: 'Arial, sans-serif'; */
+  position: relative; /* Ensure dropdown positioning works */
+}
+
+.connect-border {
+  border: 1px solid #1D3557 ;
+  border-radius: 50px;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.navbar-connect {
+  text-decoration: none;
+  color: #1D3557  ; /* Replace with a color from the theme */
+  font-weight: bold;
+  font-size: 1.0rem;
+}
+
+.connect-border:hover {
+  background-color: #1D3557 ;
+  color: #Fff;
+  transition: background-color 0.3s ease;
+}
+
+

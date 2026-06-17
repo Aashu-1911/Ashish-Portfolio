@@ -1,0 +1,27 @@
+# Node / React
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+dist/
+build/
+
+# Environment
+*.env
+!.env.example
+
+# Uploads (keep folder, ignore uploaded files)
+backend/uploads/projects_images/*
+!backend/uploads/projects_images/.gitkeep
+
+# Local MongoDB data
+backend/data/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
