@@ -3,11 +3,20 @@ import nodemailer from "nodemailer";
 const createTransporter = () => {
   const emailBackend = process.env.EMAIL_BACKEND || "console";
 
+  console.log("EMAIL_BACKEND:", emailBackend);
+
   if (emailBackend === "console") {
+    console.log("Using console transport");
+
     return nodemailer.createTransport({
       jsonTransport: true,
     });
   }
+
+  console.log("Using SMTP transport");
+  console.log("EMAIL_HOST:", process.env.EMAIL_HOST);
+  console.log("EMAIL_PORT:", process.env.EMAIL_PORT);
+  console.log("EMAIL_HOST_USER:", process.env.EMAIL_HOST_USER);
 
   return nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -17,42 +26,64 @@ const createTransporter = () => {
       user: process.env.EMAIL_HOST_USER,
       pass: process.env.EMAIL_HOST_PASSWORD,
     },
-    tls: {
-      rejectUnauthorized: process.env.EMAIL_USE_TLS !== "False",
-    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 };
 
 export const sendEmail = async (req, res) => {
   try {
-    console.log("Email request received");
+    console.log("========== EMAIL REQUEST RECEIVED ==========");
 
     const { name, email, message } = req.body;
 
-    const subject = `New Contact Form Submission from ${name}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const recipient = process.env.CONTACT_RECIPIENT || "abhishekbiradar0207@gmail.com";
+    console.log("Name:", name);
+    console.log("Email:", email);
 
-    console.log("Creating transporter...");
+    const recipient =
+      process.env.CONTACT_RECIPIENT ||
+      "ashishbiradar.1911@gmail.com";
+
     const transporter = createTransporter();
 
-    console.log("Sending email to:", recipient);
+    console.log("Verifying transporter...");
 
-    await transporter.sendMail({
+    await transporter.verify();
+
+    console.log("SMTP connection successful");
+
+    const mailOptions = {
       from: process.env.EMAIL_HOST_USER,
       replyTo: email,
       to: recipient,
-      subject,
-      text: body,
-    });
+      subject: `Portfolio Contact Form - ${name}`,
+      text: `
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+      `,
+    };
+
+    console.log("Sending email to:", recipient);
+
+    const info = await transporter.sendMail(mailOptions);
 
     console.log("Email sent successfully");
+    console.log("Message ID:", info.messageId);
 
-    res.json({ success: true, message: "Email sent successfully!" });
+    return res.status(200).json({
+      success: true,
+      message: "Email sent successfully!",
+    });
   } catch (error) {
-    console.error("EMAIL ERROR:", error);
+    console.error("========== EMAIL ERROR ==========");
+    console.error(error);
+    console.error("=================================");
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
