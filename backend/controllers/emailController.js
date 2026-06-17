@@ -1,4 +1,3 @@
-
 import nodemailer from "nodemailer";
 
 const createTransporter = () => {
@@ -18,7 +17,9 @@ const createTransporter = () => {
   console.log("EMAIL_HOST_USER:", process.env.EMAIL_HOST_USER);
 
   return nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_HOST_USER,
       pass: process.env.EMAIL_HOST_PASSWORD,
@@ -40,12 +41,6 @@ export const sendEmail = async (req, res) => {
       "ashishbiradar.1911@gmail.com";
 
     const transporter = createTransporter();
-
-    console.log("Verifying transporter...");
-
-    await transporter.verify();
-
-    console.log("SMTP connection successful");
 
     const mailOptions = {
       from: process.env.EMAIL_HOST_USER,
@@ -83,4 +78,3 @@ ${message}
     });
   }
 };
-
