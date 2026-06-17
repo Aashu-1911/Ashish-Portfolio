@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 Portfolio Website
 
 A **modern and responsive** portfolio website built with the **MERN stack** (MongoDB, Express, React, Node.js).
@@ -62,3 +63,6 @@ This project is licensed under the **MIT License**.
 ---
 
 ⭐ **Star this repo to support the project!**
+=======
+
+>>>>>>> bc2c70f567bcf8631ee948c3c9f50b9ea7bca633
