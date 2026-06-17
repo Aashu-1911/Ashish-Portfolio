@@ -25,27 +25,36 @@ const createTransporter = () => {
 
 export const sendEmail = async (req, res) => {
   try {
+    console.log("Email request received");
+
     const { name, email, message } = req.body;
 
     const subject = `New Contact Form Submission from ${name}`;
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
     const recipient = process.env.CONTACT_RECIPIENT || "abhishekbiradar0207@gmail.com";
 
+    console.log("Creating transporter...");
     const transporter = createTransporter();
 
+    console.log("Sending email to:", recipient);
+
     await transporter.sendMail({
-      from: email,
+      from: process.env.EMAIL_HOST_USER,
+      replyTo: email,
       to: recipient,
       subject,
       text: body,
     });
 
-    if (process.env.EMAIL_BACKEND === "console") {
-      console.log("Contact form email:", { name, email, message, to: recipient });
-    }
+    console.log("Email sent successfully");
 
     res.json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    console.error("EMAIL ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
