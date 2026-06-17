@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚀 Portfolio Website
 
 A **modern and responsive** portfolio website built with the **MERN stack** (MongoDB, Express, React, Node.js).
