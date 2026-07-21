@@ -27,6 +27,8 @@ export const createTransporter = () => {
       user: process.env.EMAIL_HOST_USER,
       pass: process.env.EMAIL_HOST_PASSWORD,
     },
+    // Force IPv4 to prevent Render IPv6 network unreachable errors (ENETUNREACH)
+    family: 4,
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 15000,

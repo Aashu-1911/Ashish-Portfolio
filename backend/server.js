@@ -5,7 +5,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import prisma from "./lib/prisma.js";
 import apiRoutes from "./routes/api.js";
-import { createTransporter } from "./controllers/emailController.js";
 
 dotenv.config();
 
@@ -57,17 +56,6 @@ app.listen(PORT, () => {
   console.log(`  GET  /api/all-projects`);
   console.log(`  POST /api/send-email`);
   console.log(`===============================================`);
-
-  if (process.env.EMAIL_BACKEND === "smtp") {
-    console.log("[SMTP Startup Audit] Verifying Gmail SMTP configuration...");
-    const transporter = createTransporter();
-    transporter
-      .verify()
-      .then(() => console.log("[SMTP Startup Audit] ✅ Transporter verified successfully"))
-      .catch((err) =>
-        console.error("[SMTP Startup Audit] ❌ Transporter verification error:", err.message)
-      );
-  }
 });
 
 process.on("beforeExit", async () => {
