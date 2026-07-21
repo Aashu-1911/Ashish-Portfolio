@@ -46,12 +46,11 @@ app.get("/", (_req, res) => {
 app.listen(PORT, () => {
   console.log(`===============================================`);
   console.log(`Server running on port ${PORT}`);
-  console.log(`EMAIL_BACKEND: ${process.env.EMAIL_BACKEND || "console"}`);
-  console.log(`EMAIL_HOST_USER configured: ${Boolean(process.env.EMAIL_HOST_USER)}`);
+  console.log(`RESEND_API_KEY configured: ${Boolean(process.env.RESEND_API_KEY)}`);
+  console.log(`CONTACT_RECEIVER_EMAIL: ${process.env.CONTACT_RECEIVER_EMAIL || "ashishbiradar.1911@gmail.com"}`);
   console.log(`DATABASE_URL configured: ${Boolean(process.env.DATABASE_URL)}`);
   console.log(`Registered Routes:`);
   console.log(`  GET  /`);
-  console.log(`  GET  /api/email-test`);
   console.log(`  GET  /api/top-projects`);
   console.log(`  GET  /api/all-projects`);
   console.log(`  POST /api/send-email`);
