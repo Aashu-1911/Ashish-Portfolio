@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import prisma from "./lib/prisma.js";
 import apiRoutes from "./routes/api.js";
+import { createTransporter } from "./controllers/emailController.js";
 
 dotenv.config();
 
@@ -17,12 +18,18 @@ const PORT = process.env.PORT || 8000;
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
+
+app.options("*", cors());
+
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+app.use((req, _res, next) => {
+  console.log(`[HTTP Request] ${req.method} ${req.url}`);
   next();
 });
 
@@ -38,7 +45,29 @@ app.get("/", (_req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(`===============================================`);
   console.log(`Server running on port ${PORT}`);
+  console.log(`EMAIL_BACKEND: ${process.env.EMAIL_BACKEND || "console"}`);
+  console.log(`EMAIL_HOST_USER configured: ${Boolean(process.env.EMAIL_HOST_USER)}`);
+  console.log(`DATABASE_URL configured: ${Boolean(process.env.DATABASE_URL)}`);
+  console.log(`Registered Routes:`);
+  console.log(`  GET  /`);
+  console.log(`  GET  /api/email-test`);
+  console.log(`  GET  /api/top-projects`);
+  console.log(`  GET  /api/all-projects`);
+  console.log(`  POST /api/send-email`);
+  console.log(`===============================================`);
+
+  if (process.env.EMAIL_BACKEND === "smtp") {
+    console.log("[SMTP Startup Audit] Verifying Gmail SMTP configuration...");
+    const transporter = createTransporter();
+    transporter
+      .verify()
+      .then(() => console.log("[SMTP Startup Audit] ✅ Transporter verified successfully"))
+      .catch((err) =>
+        console.error("[SMTP Startup Audit] ❌ Transporter verification error:", err.message)
+      );
+  }
 });
 
 process.on("beforeExit", async () => {
