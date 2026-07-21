@@ -1,9 +1,17 @@
-import Domain from "../models/Domain.js";
-import Project from "../models/Project.js";
+import prisma from "../lib/prisma.js";
 import serializeProject from "../utils/serializeProject.js";
 
 const buildProjectsByDomain = async (limitPerDomain = null) => {
-  const domains = await Domain.find().sort({ name: 1 });
+  const domains = await prisma.domain.findMany({
+    orderBy: { name: "asc" },
+    include: {
+      projects: {
+        orderBy: { createdAt: "desc" },
+        ...(limitPerDomain !== null ? { take: limitPerDomain } : {}),
+      },
+    },
+  });
+
   const responseData = {};
 
   for (const domain of domains) {
@@ -11,14 +19,7 @@ const buildProjectsByDomain = async (limitPerDomain = null) => {
       continue;
     }
 
-    let query = Project.find({ domain: domain._id }).sort({ created_at: -1 });
-
-    if (limitPerDomain !== null) {
-      query = query.limit(limitPerDomain);
-    }
-
-    const projects = await query;
-    responseData[domain.name] = projects.map(serializeProject);
+    responseData[domain.name] = domain.projects.map(serializeProject);
   }
 
   return responseData;
@@ -33,8 +34,28 @@ export const getTopProjects = async (_req, res) => {
   }
 };
 
-export const getAllProjects = async (_req, res) => {
+export const getAllProjects = async (req, res) => {
   try {
+    const domainFilter = req.params?.domainName;
+    if (domainFilter) {
+      const domain = await prisma.domain.findFirst({
+        where: { name: { equals: domainFilter, mode: "insensitive" } },
+        include: {
+          projects: {
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      });
+
+      if (!domain) {
+        return res.json({ [domainFilter]: [] });
+      }
+
+      return res.json({
+        [domain.name]: domain.projects.map(serializeProject),
+      });
+    }
+
     const responseData = await buildProjectsByDomain(null);
     res.json(responseData);
   } catch (error) {

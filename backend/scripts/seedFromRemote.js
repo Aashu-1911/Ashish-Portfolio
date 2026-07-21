@@ -1,7 +1,5 @@
 import dotenv from "dotenv";
-import connectDB from "../config/db.js";
-import Domain from "../models/Domain.js";
-import Project from "../models/Project.js";
+import prisma from "../lib/prisma.js";
 
 dotenv.config();
 
@@ -23,35 +21,45 @@ const extractImageFilename = (imageUrl) => {
 };
 
 const importFromRemote = async () => {
-  await connectDB();
+  console.log("Importing remote projects using Prisma...");
 
   const allProjects = await fetchJson("/all-projects/");
 
-  await Project.deleteMany({});
-  await Domain.deleteMany({});
+  await prisma.$transaction([
+    prisma.project.deleteMany({}),
+    prisma.domain.deleteMany({}),
+  ]);
 
   for (const [domainName, projects] of Object.entries(allProjects)) {
-    const domain = await Domain.create({
-      name: domainName,
-      description: "",
+    const domain = await prisma.domain.create({
+      data: {
+        name: domainName,
+        description: "",
+      },
     });
 
-    for (const project of projects) {
-      await Project.create({
-        domain: domain._id,
-        title: project.title,
-        description: project.description,
-        project_url: project.project_url || "",
-        image: extractImageFilename(project.image),
+    if (projects && projects.length > 0) {
+      await prisma.project.createMany({
+        data: projects.map((project) => ({
+          domainId: domain.id,
+          title: project.title,
+          description: project.description,
+          projectUrl: project.project_url || "",
+          image: extractImageFilename(project.image),
+        })),
       });
     }
   }
 
-  console.log("Imported projects from remote API");
-  process.exit(0);
+  console.log("Imported projects from remote API successfully");
 };
 
-importFromRemote().catch((error) => {
-  console.error("Remote import failed:", error.message);
-  process.exit(1);
-});
+importFromRemote()
+  .catch((error) => {
+    console.error("Remote import failed:", error.message);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+  });

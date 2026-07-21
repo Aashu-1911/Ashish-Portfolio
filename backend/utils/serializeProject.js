@@ -1,8 +1,8 @@
 const serializeProject = (project) => ({
-  id: project._id.toString(),
+  id: project.id.toString(),
   title: project.title,
   description: project.description,
-  project_url: project.project_url || "",
+  project_url: project.projectUrl || "",
   image: project.image
     ? project.image.startsWith("/")
       ? project.image

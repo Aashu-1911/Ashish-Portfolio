@@ -1,7 +1,5 @@
 import dotenv from "dotenv";
-import connectDB from "../config/db.js";
-import Domain from "../models/Domain.js";
-import Project from "../models/Project.js";
+import prisma from "../lib/prisma.js";
 
 dotenv.config();
 
@@ -13,7 +11,7 @@ const seedData = [
       {
         title: "Portfolio Website",
         description: "A modern portfolio built with React and Node.js.",
-        project_url: "https://github.com/Aabi0207/Portfolio-Website",
+        projectUrl: "https://github.com/Aabi0207/Portfolio-Website",
         image: "",
       },
     ],
@@ -25,7 +23,7 @@ const seedData = [
       {
         title: "ML Project",
         description: "An AI/ML project showcasing model training and inference.",
-        project_url: "https://github.com",
+        projectUrl: "https://github.com",
         image: "",
       },
     ],
@@ -37,7 +35,7 @@ const seedData = [
       {
         title: "Data Analysis Project",
         description: "Exploratory data analysis and visualization project.",
-        project_url: "https://github.com",
+        projectUrl: "https://github.com",
         image: "",
       },
     ],
@@ -50,30 +48,34 @@ const seedData = [
 ];
 
 const seed = async () => {
-  await connectDB();
+  console.log("Seeding database using Prisma...");
 
-  await Project.deleteMany({});
-  await Domain.deleteMany({});
+  await prisma.$transaction([
+    prisma.project.deleteMany({}),
+    prisma.domain.deleteMany({}),
+  ]);
 
   for (const domainData of seedData) {
-    const domain = await Domain.create({
-      name: domainData.name,
-      description: domainData.description,
+    await prisma.domain.create({
+      data: {
+        name: domainData.name,
+        description: domainData.description,
+        projects: {
+          create: domainData.projects,
+        },
+      },
     });
-
-    for (const projectData of domainData.projects) {
-      await Project.create({
-        ...projectData,
-        domain: domain._id,
-      });
-    }
   }
 
   console.log("Database seeded successfully");
-  process.exit(0);
 };
 
-seed().catch((error) => {
-  console.error("Seed failed:", error.message);
-  process.exit(1);
-});
+seed()
+  .catch((error) => {
+    console.error("Seed failed:", error);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+  });
