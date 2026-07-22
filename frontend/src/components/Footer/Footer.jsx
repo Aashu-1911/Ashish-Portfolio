@@ -29,7 +29,7 @@ const Footer = () => {
           <FaEnvelope />
         </a>
       </div>
-      <p className="footer-section__text">Copyright © Abhishek Biradar 2024</p>
+      <p className="footer-section__text">Copyright © Ashish Biradar 2026</p>
     </footer>
   );
 };
