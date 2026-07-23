@@ -31,7 +31,7 @@ const About = ({ id }) => {
         {/* Left Column: Text & CTA */}
         <div className="hero-content">
           <div className="internship-badge">
-            OPEN TO WORK
+            OPEN TO NEW OPPORTUNITIES
           </div>
           
           <div className="hero-title-wrapper">
