@@ -1,32 +1,122 @@
-/* src/components/Navbar.css */
+/* src/components/Navbar/navbar.css */
 .navbar {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #A8DADC; /* Replace with theme's background color */
-  /* font-family: 'Arial, sans-serif'; */
-  position: relative; /* Ensure dropdown positioning works */
+  padding: 20px 4.5rem;
+  background-color: #A8DADC;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.connect-border {
-  border: 1px solid #1D3557 ;
-  border-radius: 50px;
-  display: inline-block;
-  padding: 5px 10px;
+.navbar-left {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1D3557;
+  cursor: pointer;
+  letter-spacing: -0.5px;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #457B9D;
+  cursor: pointer;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #1D3557;
+}
+
+.nav-link.active {
+  color: #1D3557;
+}
+
+/* Red underline for active navigation link */
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #E63946;
+  border-radius: 2px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-icon-link {
+  color: #1D3557;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-icon-link:hover {
+  color: #E63946;
+  transform: translateY(-2px);
 }
 
 .navbar-connect {
   text-decoration: none;
-  color: #1D3557  ; /* Replace with a color from the theme */
-  font-weight: bold;
-  font-size: 1.0rem;
+  color: #1D3557;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.connect-border {
+  border: 1.5px solid #1D3557;
+  border-radius: 50px;
+  display: inline-block;
+  padding: 6px 20px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .connect-border:hover {
-  background-color: #1D3557 ;
-  color: #Fff;
-  transition: background-color 0.3s ease;
+  background-color: #1D3557;
+  color: #A8DADC;
+  transform: scale(1.05);
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 20px 2.5rem;
+  }
+}
 
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 15px;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}

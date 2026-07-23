@@ -28,7 +28,7 @@
 #project-section {
   position: relative;
   z-index: 1;
-  margin-top: 590px;
+  margin-top: 80px;
 }
 
 #container {
@@ -36,9 +36,8 @@
 }
 
 #skill-table {
-    position: absolute;
-    bottom: -520px;
-    right: 0px;
+    position: relative;
+    z-index: 5;
 }
 .section {
   opacity: 0;
@@ -56,12 +55,8 @@
 
 
 @media (max-width: 768px) {
-    #skill-table {
-      bottom: -1700px;
-    }
-
     #project-section{
-      margin-top: 1740px;
+      margin-top: 60px;
     }
 
     #project-container .project-bg{

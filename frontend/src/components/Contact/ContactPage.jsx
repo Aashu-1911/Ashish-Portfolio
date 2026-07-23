@@ -80,7 +80,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="contact-page">
+    <div className="contact-page" id="contact">
       <Stepper
         initialStep={1}
         onFinalStepCompleted={handleSubmit}
