@@ -88,6 +88,7 @@
   flex-direction: column;
   align-items: center;
   height: auto;
+  box-sizing: border-box;
 }
 
 .skills-column:hover {
@@ -102,7 +103,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 220px; /* fixed height to align headers across cards */
+  height: 250px; /* fixed height increased from 220px to prevent text bleeding when title wraps */
 }
 
 .skill-card-icon-wrapper {
@@ -159,7 +160,7 @@
 /* Tech Stack Grid layout */
 .tech-stack-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   width: 100%;
   margin-top: 5px;
@@ -251,7 +252,7 @@
   }
   
   .tech-stack-grid {
-    grid-template-columns: repeat(3, 1fr); /* Keep 3-column layout on mobile */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Keep 3-column layout on mobile */
     gap: 8px;
   }
 }
