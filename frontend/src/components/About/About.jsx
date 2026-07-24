@@ -1,8 +1,61 @@
 // src/components/About/About.jsx
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaAward, FaFolderOpen, FaBrain, FaStar, FaLayerGroup, FaGraduationCap, FaTrophy } from "react-icons/fa";
 import './About.css';
 import BlurText from "./BlurText";
+
+const CountUp = ({ to, duration = 1500 }) => {
+  const [count, setCount] = useState(0);
+  const [inView, setInView] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let start = 0;
+    const end = parseInt(to, 10);
+    if (isNaN(end) || start === end) return;
+
+    let startTime = null;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const progressPercentage = Math.min(progress / duration, 1);
+      const easedProgress = progressPercentage * (2 - progressPercentage); // easeOutQuad
+      const currentCount = Math.floor(easedProgress * (end - start) + start);
+      setCount(currentCount);
+
+      if (progress < duration) {
+        window.requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    window.requestAnimationFrame(animate);
+  }, [inView, to, duration]);
+
+  return <span ref={elementRef}>{count}</span>;
+};
 
 const handleAnimationComplete = () => {
   console.log('Animation completed!');
@@ -150,7 +203,7 @@ const About = ({ id }) => {
             className="stat-text-item"
           >
             <FaFolderOpen className="stat-text-icon" />
-            <span><strong>20+</strong> Projects</span>
+            <span><strong><CountUp to={20} />+</strong> Projects</span>
           </a>
           <span className="stat-separator">|</span>
           <a 
@@ -160,7 +213,7 @@ const About = ({ id }) => {
             className="stat-text-item"
           >
             <FaBrain className="stat-text-icon" />
-            <span><strong>200+</strong> DSA Problems</span>
+            <span><strong><CountUp to={200} />+</strong> DSA Problems</span>
           </a>
           <span className="stat-separator">|</span>
           <a 

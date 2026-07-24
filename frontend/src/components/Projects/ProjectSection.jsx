@@ -105,7 +105,6 @@ const ProjectsSection = ({ id }) => {
           <div
             key={project.id}
             className="project-card"
-            onClick={() => window.open(project.url, "_blank")}
             onMouseLeave={closeTechStack} // automatically resets to description view when mouse leaves card
           >
             <div className="project-image">
@@ -119,34 +118,12 @@ const ProjectsSection = ({ id }) => {
                 <div className="project-image-fallback" />
               )}
               
-              {/* Single Hover Overlay (White theme background) */}
-              <div className="project-overlay" onClick={(e) => e.stopPropagation()}>
-                <h4 className="heading-tit">{project.title}</h4>
-                
-                {activeTechProjectId !== project.id ? (
-                  <>
-                    <p className="project-description">{project.description}</p>
-                    <div className="project-actions">
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-action-btn visit-btn"
-                      >
-                        Visit
-                      </a>
-                      <button
-                        className="project-action-btn tech-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleTechStack(project.id);
-                        }}
-                      >
-                        Tech Stack
-                      </button>
-                    </div>
-                  </>
-                ) : (
+              {/* Single Hover Overlay (Description or Tech Stack badges) */}
+              <div 
+                className={`project-overlay ${activeTechProjectId === project.id ? 'visible' : ''}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {activeTechProjectId === project.id ? (
                   <>
                     <button 
                       className="tech-back-btn" 
@@ -169,8 +146,36 @@ const ProjectsSection = ({ id }) => {
                       </div>
                     </div>
                   </>
+                ) : (
+                  <>
+                    <h4 className="heading-tit">{project.title}</h4>
+                    <p className="project-description">{project.description}</p>
+                  </>
                 )}
               </div>
+
+              {/* Floating Persistent Actions Panel (Always visible in front of image, hidden when tech stack open) */}
+              {activeTechProjectId !== project.id && (
+                <div className="project-actions-floating" onClick={(e) => e.stopPropagation()}>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-action-btn visit-btn"
+                  >
+                    Visit
+                  </a>
+                  <button
+                    className="project-action-btn tech-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTechStack(project.id);
+                    }}
+                  >
+                    Tech Stack
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))}

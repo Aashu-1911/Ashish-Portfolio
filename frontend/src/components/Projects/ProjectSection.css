@@ -20,10 +20,18 @@
 
 .project-card {
   position: relative;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
   box-sizing: border-box;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(29, 53, 87, 0.06);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(29, 53, 87, 0.12);
+  border-color: rgba(29, 53, 87, 0.2);
 }
 
 .project-image {
@@ -31,16 +39,6 @@
   width: 100%;
   padding-top: 56.25%; /* 16:9 aspect ratio */
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(29, 53, 87, 0.06);
-  border: 1px solid #e5e7eb;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover .project-image {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(29, 53, 87, 0.12);
-  border-color: rgba(29, 53, 87, 0.2);
 }
 
 .heading-1 {
@@ -71,7 +69,7 @@
   background: linear-gradient(135deg, #457b9d 0%, #1d3557 100%);
 }
 
-/* Hover Overlay (Original dark blue background) */
+/* Hover/Click Overlay (Dark blue background) */
 .project-overlay {
   position: absolute;
   top: 0;
@@ -83,21 +81,23 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 20px 70px 20px; /* added bottom padding to clear the floating buttons */
   opacity: 0;
+  pointer-events: none; /* disable pointer events when hidden */
   transition: opacity 0.3s ease;
   z-index: 5;
   box-sizing: border-box;
-  border-radius: 15px; /* curve overlay matching image border */
 }
 
-.project-card:hover .project-overlay {
+.project-card:hover .project-overlay,
+.project-overlay.visible {
   opacity: 1;
+  pointer-events: auto; /* enable pointer events when visible */
 }
 
 .heading-tit {
   color: #F1FAEE; /* light project name */
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 1.25rem;
   font-weight: 700;
   text-align: center;
@@ -108,43 +108,49 @@
   font-size: 0.82rem;
   text-align: center;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* Overlay Buttons */
-.project-actions {
+/* Floating Actions Row (Always Visible) */
+.project-actions-floating {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
   display: flex;
   gap: 12px;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .project-action-btn {
-  border: 1.5px solid #F1FAEE;
+  border: 1.5px solid #1D3557;
   border-radius: 50px;
   padding: 7px 16px;
   text-decoration: none;
-  color: #F1FAEE;
+  color: #1D3557;
   font-weight: 700;
   font-size: 0.82rem;
-  background: transparent;
+  background-color: #ffffff; /* Solid white background for visibility on top of images */
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .project-action-btn:hover {
-  background-color: #F1FAEE;
-  color: #1D3557;
+  background-color: #1D3557;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(241, 250, 238, 0.25);
+  box-shadow: 0 4px 12px rgba(29, 53, 87, 0.25);
 }
 
 .project-action-btn.tech-btn {
@@ -320,27 +326,28 @@
   }
 
   .project-overlay {
-    padding: 12px;
+    padding: 12px 12px 50px 12px; /* reduced bottom padding */
   }
 
   .heading-tit {
-    font-size: 1.15rem;
-    margin-bottom: 8px;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
   }
 
   .project-description {
     font-size: 0.78rem;
-    line-height: 1.45;
-    margin-bottom: 14px;
+    line-height: 1.4;
+    margin-bottom: 0;
     -webkit-line-clamp: 3;
   }
 
-  .project-actions {
+  .project-actions-floating {
+    bottom: 12px;
     gap: 8px;
   }
 
   .project-action-btn {
-    padding: 6px 12px;
-    font-size: 0.76rem;
+    padding: 5px 10px;
+    font-size: 0.74rem;
   }
 }
