@@ -185,3 +185,39 @@ input::placeholder, textarea::placeholder {
 input:focus, textarea:focus {
     border-color: #f1faee8e; /* Highlight on focus */
 }
+
+@media (max-width: 480px) {
+  .step-indicator-row {
+    padding: 1.25rem 1rem;
+  }
+  
+  .step-default {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .footer-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .footer-nav {
+    margin-top: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .step-circle-container h2 {
+    font-size: 1.25rem !important;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .step-circle-container p {
+    font-size: 0.9rem !important;
+  }
+}

@@ -256,3 +256,51 @@
     gap: 8px;
   }
 }
+
+@media (max-width: 480px) {
+  .skills-slider-viewport {
+    margin: 0 4px; /* collapse viewport margin to let card be wider */
+  }
+
+  .skills-column {
+    padding: 24px 12px;
+  }
+
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  .slider-arrow.left-arrow {
+    left: -4px;
+  }
+
+  .slider-arrow.right-arrow {
+    right: -4px;
+  }
+
+  .tech-stack-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .tech-badge {
+    padding: 8px 2px;
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  .tech-badge-icon {
+    font-size: 1.15rem;
+  }
+
+  .tech-badge-name {
+    font-size: 0.65rem;
+  }
+}

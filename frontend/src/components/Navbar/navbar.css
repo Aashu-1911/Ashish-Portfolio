@@ -119,4 +119,36 @@
   .nav-link {
     font-size: 0.9rem;
   }
+
+  .navbar-right {
+    gap: 12px;
+  }
+
+  .connect-border {
+    padding: 4px 14px;
+    font-size: 0.85rem;
+  }
+
+  .navbar-icon-link {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 1rem;
+  }
+
+  .navbar-center {
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .navbar-left {
+    font-size: 1.35rem;
+  }
 }

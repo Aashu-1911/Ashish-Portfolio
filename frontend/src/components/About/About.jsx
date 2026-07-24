@@ -46,7 +46,9 @@ const About = ({ id }) => {
           </div>
 
           <div className="hero-subtitle">
-            Full Stack Developer <span className="subtitle-dot">•</span> AI Engineer
+            <span className="subtitle-segment">Full Stack Developer</span>
+            <span className="subtitle-dot">•</span>
+            <span className="subtitle-segment">AI Engineer</span>
           </div>
 
           <p className="hero-tagline">

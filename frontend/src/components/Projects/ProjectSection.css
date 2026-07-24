@@ -312,3 +312,35 @@
     width: 36px;
   }
 }
+
+@media (max-width: 480px) {
+  .heading-1 {
+    font-size: 1.5rem;
+    padding-bottom: 12px;
+  }
+
+  .project-overlay {
+    padding: 12px;
+  }
+
+  .heading-tit {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .project-description {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin-bottom: 14px;
+    -webkit-line-clamp: 3;
+  }
+
+  .project-actions {
+    gap: 8px;
+  }
+
+  .project-action-btn {
+    padding: 6px 12px;
+    font-size: 0.76rem;
+  }
+}
