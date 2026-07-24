@@ -250,6 +250,7 @@
   color: #1D3557;
   font-weight: 500;
   transition: transform 0.2s ease, color 0.2s ease;
+  text-decoration: none;
 }
 
 .stat-text-item:hover {

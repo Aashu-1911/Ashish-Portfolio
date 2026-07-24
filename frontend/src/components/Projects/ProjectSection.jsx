@@ -101,11 +101,12 @@ const ProjectsSection = ({ id }) => {
     <div className="projects-section" id={id}>
       <h2 className="heading-1">My Projects</h2>
       <div className="projects-container">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div
             key={project.id}
             className="project-card"
             onClick={() => window.open(project.url, "_blank")}
+            onMouseLeave={closeTechStack} // automatically resets to description view when mouse leaves card
           >
             <div className="project-image">
               {project.imageUrl ? (
@@ -117,62 +118,60 @@ const ProjectsSection = ({ id }) => {
               ) : (
                 <div className="project-image-fallback" />
               )}
+              
+              {/* Single Hover Overlay (White theme background) */}
               <div className="project-overlay" onClick={(e) => e.stopPropagation()}>
                 <h4 className="heading-tit">{project.title}</h4>
-                <p className="project-description">{project.description}</p>
-                <div className="project-actions">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-action-btn visit-btn"
-                  >
-                    Visit
-                  </a>
-                  <button
-                    className="project-action-btn tech-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleTechStack(project.id);
-                    }}
-                  >
-                    Tech Stack
-                  </button>
-                </div>
+                
+                {activeTechProjectId !== project.id ? (
+                  <>
+                    <p className="project-description">{project.description}</p>
+                    <div className="project-actions">
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-action-btn visit-btn"
+                      >
+                        Visit
+                      </a>
+                      <button
+                        className="project-action-btn tech-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleTechStack(project.id);
+                        }}
+                      >
+                        Tech Stack
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <button 
+                      className="tech-back-btn" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeTechStack();
+                      }}
+                      aria-label="Back to description"
+                    >
+                      <FaTimes />
+                    </button>
+                    <div className="tech-overlay-body">
+                      <div className="tech-overlay-grid">
+                        {projectTechStacks[project.id]?.map((tech, idx) => (
+                          <div className="tech-overlay-badge" key={idx} title={tech.name}>
+                            <span className="tech-overlay-icon">{tech.icon}</span>
+                            <span className="tech-overlay-name">{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
-
-            {/* Inline Tech Stack Overlay (In Front of Card) */}
-            {activeTechProjectId === project.id && (
-              <div 
-                className="project-tech-overlay" 
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button 
-                  className="tech-close-btn" 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeTechStack();
-                  }}
-                  aria-label="Close tech stack"
-                >
-                  <FaTimes />
-                </button>
-                <div className="tech-overlay-header">
-                  <span className="tech-overlay-title">Tech Stack</span>
-                </div>
-                <div className="tech-overlay-body">
-                  <div className="tech-overlay-grid">
-                    {projectTechStacks[project.id]?.map((tech, idx) => (
-                      <div className="tech-overlay-badge" key={idx} title={tech.name}>
-                        <span className="tech-overlay-icon">{tech.icon}</span>
-                        <span className="tech-overlay-name">{tech.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         ))}
       </div>

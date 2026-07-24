@@ -103,7 +103,7 @@ const About = ({ id }) => {
               <FaEnvelope />
             </a>
             <a 
-              href="https://github.com/Aashu-1911" 
+              href="https://leetcode.com/u/Ashish_1911/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon-circle"
@@ -112,7 +112,7 @@ const About = ({ id }) => {
               <FaCode />
             </a>
             <a 
-              href="https://www.linkedin.com/in/ashish-biradar-8390b6354/details/certifications/" 
+              href="https://drive.google.com/drive/u/0/folders/1u3DTKqy-_xkNkpBPTOpeA2QfLqhyZR_K" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon-circle"
@@ -141,20 +141,35 @@ const About = ({ id }) => {
 
         {/* Stats Inline Row */}
         <div className="about-stats-text-row">
-          <div className="stat-text-item">
+          <a 
+            href="https://github.com/Aashu-1911" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="stat-text-item"
+          >
             <FaFolderOpen className="stat-text-icon" />
             <span><strong>20+</strong> Projects</span>
-          </div>
+          </a>
           <span className="stat-separator">|</span>
-          <div className="stat-text-item">
+          <a 
+            href="https://leetcode.com/u/Ashish_1911/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="stat-text-item"
+          >
             <FaBrain className="stat-text-icon" />
             <span><strong>200+</strong> DSA Problems</span>
-          </div>
+          </a>
           <span className="stat-separator">|</span>
-          <div className="stat-text-item">
+          <a 
+            href="https://www.codechef.com/users/ashu_1927" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="stat-text-item"
+          >
             <FaStar className="stat-text-icon" />
             <span><strong>CodeChef 2★</strong></span>
-          </div>
+          </a>
           <span className="stat-separator">|</span>
           <div className="stat-text-item">
             <FaLayerGroup className="stat-text-icon" />
@@ -166,10 +181,15 @@ const About = ({ id }) => {
             <span><strong>MIT Academy of Engineering</strong></span>
           </div>
           <span className="stat-separator">|</span>
-          <div className="stat-text-item">
+          <a 
+            href="https://drive.google.com/file/d/1Ml1lmiQ0G9WjhZdgtlMP2octGbnN4_cr/view?usp=sharing" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="stat-text-item"
+          >
             <FaTrophy className="stat-text-icon" />
             <span><strong>Datathon 2025 Winner</strong></span>
-          </div>
+          </a>
         </div>
 
         <p className="about-details-text">
