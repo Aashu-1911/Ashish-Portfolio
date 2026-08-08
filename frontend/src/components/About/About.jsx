@@ -203,7 +203,7 @@ const About = ({ id }) => {
             className="stat-text-item"
           >
             <FaFolderOpen className="stat-text-icon" />
-            <span><strong><CountUp to={20} />+</strong> Projects</span>
+            <span><strong><CountUp to={10} />+</strong> Projects</span>
           </a>
           <span className="stat-separator">|</span>
           <a 

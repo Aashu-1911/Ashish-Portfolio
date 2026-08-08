@@ -20,15 +20,15 @@ const skillsData = [
     categoryIcon: <FaLaptopCode />,
     description: "I build scalable fullstack web applications using the MERN stack, designing responsive user interfaces and robust backend APIs that deliver seamless user experiences.",
     techStack: [
-      { name: "React.js", icon: <FaReact style={{ color: "#61DAFB" }} /> },
-      { name: "Node.js", icon: <FaNodeJs style={{ color: "#339933" }} /> },
-      { name: "Express.js", icon: <SiExpress style={{ color: "#000000" }} /> },
-      { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
       { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
       { name: "Tailwind", icon: <SiTailwindcss style={{ color: "#06B6D4" }} /> },
       { name: "Bootstrap", icon: <FaBootstrap style={{ color: "#7952B3" }} /> },
-      { name: "REST APIs", icon: <FaServer style={{ color: "#457B9D" }} /> }
+      { name: "REST APIs", icon: <FaServer style={{ color: "#457B9D" }} /> },
+      { name: "React.js", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+      { name: "Node.js", icon: <FaNodeJs style={{ color: "#339933" }} /> },
+      { name: "Express.js", icon: <SiExpress style={{ color: "#000000" }} /> },
+      { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> }  
     ]
   },
   {
@@ -38,11 +38,9 @@ const skillsData = [
     description: "I develop AI-powered applications by integrating machine learning models, large language models, and intelligent automation to solve practical real-world problems.",
     techStack: [
       { name: "Python", icon: <FaPython style={{ color: "#3776AB" }} /> },
-      { name: "PyTorch", icon: <SiPytorch style={{ color: "#EE4C2C" }} /> },
       { name: "scikit-learn", icon: <SiScikitlearn style={{ color: "#F7931E" }} /> },
       { name: "NumPy", icon: <SiNumpy style={{ color: "#013243" }} /> },
       { name: "Pandas", icon: <SiPandas style={{ color: "#150458" }} /> },
-      { name: "LangChain", icon: <SiLangchain style={{ color: "#1C3C3A" }} /> },
       { name: "Hugging Face", icon: <SiHuggingface style={{ color: "#FFD21E" }} /> },
       { name: "Ollama", icon: <FaBrain style={{ color: "#000000" }} /> },
       { name: "Jupyter", icon: <SiJupyter style={{ color: "#F37626" }} /> }
@@ -54,15 +52,13 @@ const skillsData = [
     categoryIcon: <FaCloud />,
     description: "I deploy and manage modern applications using cloud platforms, Linux, containers, and CI/CD practices with a focus on scalability and reliability.",
     techStack: [
-      { name: "AWS", icon: <FaAws style={{ color: "#FF9900" }} /> },
-      { name: "Docker", icon: <SiDocker style={{ color: "#2496ED" }} /> },
       { name: "Linux", icon: <FaLinux style={{ color: "#FCC624" }} /> },
       { name: "Git", icon: <FaGitAlt style={{ color: "#F05032" }} /> },
       { name: "GitHub", icon: <FaGithub style={{ color: "#181717" }} /> },
       { name: "Render", icon: <FaCloud style={{ color: "#46E3B7" }} /> },
       { name: "Vercel", icon: <SiVercel style={{ color: "#000000" }} /> },
-      { name: "CI/CD", icon: <FaServer style={{ color: "#1D3557" }} /> },
-      { name: "Nginx", icon: <SiNginx style={{ color: "#009639" }} /> }
+      { name: "CI/CD", icon: <FaServer style={{ color: "#1D3557" }} /> }
+      
     ]
   },
   {

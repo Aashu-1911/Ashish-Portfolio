@@ -130,14 +130,14 @@
 }
 
 .project-action-btn {
-  border: 1.5px solid #1D3557;
+  border: 1.5px solid #F1FAEE;
   border-radius: 50px;
   padding: 7px 16px;
   text-decoration: none;
-  color: #1D3557;
+  color: #F1FAEE;
   font-weight: 700;
   font-size: 0.82rem;
-  background-color: #ffffff; /* Solid white background for visibility on top of images */
+  background-color: transparent;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
@@ -147,128 +147,13 @@
 }
 
 .project-action-btn:hover {
-  background-color: #1D3557;
-  color: #ffffff;
+  background-color: #F1FAEE;
+  color: #1D3557;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(29, 53, 87, 0.25);
+  box-shadow: 0 4px 12px rgba(241, 250, 238, 0.25);
 }
 
-.project-action-btn.tech-btn {
-  border-color: #E63946;
-  color: #E63946;
-}
 
-.project-action-btn.tech-btn:hover {
-  background-color: #E63946;
-  color: #ffffff;
-  border-color: #E63946;
-  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
-}
-
-/* Tech View Inline Styles */
-.tech-back-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 0.95rem;
-  color: #f1faeecc;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  z-index: 12;
-}
-
-.tech-back-btn:hover {
-  color: #E63946;
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.tech-overlay-body {
-  width: 100%;
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 2px;
-  margin-top: 5px;
-}
-
-/* Custom scrollbar for tech overlay body */
-.tech-overlay-body::-webkit-scrollbar {
-  width: 4px;
-}
-.tech-overlay-body::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-.tech-overlay-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-}
-
-.tech-overlay-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  animation: techFadeIn 0.2s ease-out;
-}
-
-.tech-overlay-badge {
-  background-color: #ffffff; /* solid white background for high contrast */
-  border: 1px solid #e5e7eb;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.tech-overlay-badge:hover {
-  background-color: #f1faee;
-  border-color: #E63946;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-}
-
-.tech-overlay-icon {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tech-overlay-name {
-  font-size: 0.44rem;
-  font-weight: 700;
-  color: #1D3557; /* dark navy text color on white badge background */
-  text-align: center;
-  width: 42px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 1px;
-}
-
-.tech-overlay-badge:hover .tech-overlay-name {
-  color: #E63946;
-}
-
-@keyframes techFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
 
 /* Row alignment on smaller screens */
 @media (max-width: 1024px) {
@@ -298,26 +183,7 @@
   }
 }
 
-@media (max-width: 576px) {
-  .tech-overlay-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
-  }
 
-  .tech-overlay-badge {
-    width: 42px;
-    height: 42px;
-  }
-
-  .tech-overlay-icon {
-    font-size: 0.95rem;
-  }
-
-  .tech-overlay-name {
-    font-size: 0.4rem;
-    width: 36px;
-  }
-}
 
 @media (max-width: 480px) {
   .heading-1 {

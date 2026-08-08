@@ -10,6 +10,14 @@ const projects = [
   },
   {
     id: 2,
+    title: "CodeSync",
+    description:
+      "Real-time code sharing platform built for seamless collaboration and user interaction.",
+    url: "https://github.com/Aashu-1911/CodeSync",
+    imageUrl: "/projects_images/CODESYNC.png",
+  },
+  {
+    id: 3,
     title: "Freelancers Marketplace",
     description:
       "Full-stack platform connecting freelancers and clients with project management and collaboration features.",
@@ -17,7 +25,7 @@ const projects = [
     imageUrl: "/projects_images/FreeLancers-MarketPlace.png",
   },
   {
-    id: 3,
+    id: 4,
     title: "Progress Tracker",
     description:
       "MERN stack application for tracking goals, tasks, and personal progress through an interactive dashboard.",
@@ -25,7 +33,7 @@ const projects = [
     imageUrl: "/projects_images/Tracker.png",
   },
   {
-    id: 4,
+    id: 5,
     title: "Portfolio Liquidity",
     description:
       "Portfolio management application designed to analyze investments and provide financial insights.",
@@ -33,21 +41,14 @@ const projects = [
     imageUrl: "/projects_images/Portfolio-Liquidity.png",
   },
   {
-    id: 5,
+    id: 6,
     title: "Local Pulse",
     description:
       "Community-focused platform that delivers local updates, information, and user engagement features.",
     url: "https://github.com/Aashu-1911/LocalPulse",
     imageUrl: "/projects_images/LocalPulse.png",
   },
-  {
-    id: 6,
-    title: "Convo",
-    description:
-      "Real-time communication platform built for seamless messaging and user interaction.",
-    url: "https://github.com/Aashu-1911/Convo",
-    imageUrl: "/projects_images/Convo.png",
-  },
+  
 ];
 
 export default projects;
