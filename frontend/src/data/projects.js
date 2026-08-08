@@ -12,8 +12,8 @@ const projects = [
     id: 2,
     title: "CodeSync",
     description:
-      "Real-time code sharing platform built for seamless collaboration and user interaction.",
-    url: "https://github.com/Aashu-1911/CodeSync",
+      "A secure, non-custodial desktop companion for automatically synchronizing LeetCode solutions directly to your personal GitHub repository.",
+    url: "https://github.com/Aashu-1911/CodeSync-",
     imageUrl: "/projects_images/CODESYNC.png",
   },
   {
