@@ -1,0 +1,537 @@
+.journey-section {
+  padding: 4rem 4.5rem;
+  background-color: #ffffff; /* clean white background */
+  color: #1D3557; /* navy primary text color */
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.journey-header {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.journey-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1D3557;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.journey-subtitle {
+  font-size: 1.15rem;
+  color: #457B9D;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* Timeline Selector Layout */
+.journey-timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  margin-bottom: 45px;
+  padding: 0 10px;
+}
+
+.journey-timeline-line {
+  position: absolute;
+  top: 25px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background-color: #1D3557;
+  z-index: 1;
+}
+
+.journey-timeline-nodes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.journey-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  text-align: center;
+}
+
+.node-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background-color: #F1FAEE;
+  color: #1D3557;
+  border: 2px solid #1D3557;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(29, 53, 87, 0.08);
+}
+
+.journey-node:hover .node-circle {
+  transform: scale(1.08);
+}
+
+/* Completed milestones node */
+.journey-node.completed .node-circle {
+  background-color: #1D3557;
+  color: #F1FAEE;
+}
+
+/* Active node (Selected) */
+.journey-node.active .node-circle {
+  background-color: #E63946; /* Accent red */
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 18px rgba(230, 57, 70, 0.55);
+  transform: scale(1.15);
+}
+
+.journey-node.active:hover .node-circle {
+  transform: scale(1.15);
+}
+
+.node-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1D3557;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.journey-node.active .node-label {
+  color: #E63946;
+}
+
+.node-date {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #457B9D;
+  margin-top: 2px;
+}
+
+/* Journey Cards side-by-side grid */
+.journey-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+/* Card Design styling */
+.journey-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 2px solid rgba(29, 53, 87, 0.12); /* light subtle border by default */
+  box-shadow: 0 6px 20px rgba(29, 53, 87, 0.04);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 380px;
+  gap: 12px;
+  box-sizing: border-box;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.journey-card-header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 15px;
+  margin-bottom: 4px;
+}
+
+.journey-card-header-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.journey-card-header-right {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+}
+
+.journey-card-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.journey-illustration-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(29, 53, 87, 0.06));
+}
+
+/* Dynamic active state borders & shadows - active card turns red */
+.journey-cards-container .journey-card.active {
+  border-color: #E63946; /* red border */
+  box-shadow: 0 12px 35px rgba(230, 57, 70, 0.14);
+  transform: translateY(-6px);
+}
+
+/* Dim card opacity slightly when it is inactive */
+.journey-card:not(.active) {
+  opacity: 0.82;
+}
+
+.journey-card:hover {
+  opacity: 1;
+}
+
+/* Details Typography */
+.journey-card-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 8px;
+  border: 1.5px solid #1D3557;
+  background-color: rgba(29, 53, 87, 0.05);
+  color: #1D3557;
+}
+
+.journey-card-badge.badge-1 {
+  border-color: #1D3557;
+  color: #1D3557;
+  background-color: rgba(29, 53, 87, 0.05);
+}
+
+.journey-card-badge.badge-2 {
+  border-color: #E63946;
+  color: #E63946;
+  background-color: rgba(230, 57, 70, 0.05);
+}
+
+.journey-card-badge.badge-3 {
+  border-color: #457B9D;
+  color: #457B9D;
+  background-color: rgba(69, 123, 157, 0.05);
+}
+
+.journey-card-dates {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #457B9D;
+  margin-bottom: 8px;
+}
+
+.journey-card-summary {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #383838;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+/* Sub-blocks inside Card */
+.journey-milestones-block,
+.journey-achievements-block,
+.journey-areas-block,
+.journey-note-block {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.journey-milestones-block:last-child,
+.journey-achievements-block:last-child,
+.journey-areas-block:last-child,
+.journey-note-block:last-child {
+  margin-bottom: 0;
+}
+
+.block-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1D3557;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(29, 53, 87, 0.1);
+  padding-bottom: 4px;
+}
+
+.block-title-icon {
+  color: #E63946;
+  font-size: 0.95rem;
+}
+
+/* Bullet list */
+.milestone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.milestone-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.milestone-icon.completed {
+  color: #E63946;
+}
+
+.milestone-icon.future {
+  color: #457B9D;
+  opacity: 0.6;
+}
+
+.milestone-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #383838;
+  line-height: 1.4;
+}
+
+/* Achievements blocks styling */
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(29, 53, 87, 0.03);
+  border: 1px solid rgba(29, 53, 87, 0.15);
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.achievement-item:hover {
+  background-color: rgba(29, 53, 87, 0.05);
+  border-color: rgba(29, 53, 87, 0.3);
+}
+
+.achievement-icon-wrapper {
+  font-size: 1.1rem;
+  color: #E63946;
+  display: flex;
+  align-items: center;
+}
+
+.achievement-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1D3557;
+}
+
+/* Area Badge Chips */
+.areas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.area-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 650;
+  color: #E63946;
+  background-color: rgba(230, 57, 70, 0.05);
+  border: 1px solid rgba(230, 57, 70, 0.22);
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+/* Notes callout box */
+.note-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(69, 123, 157, 0.06);
+  border: 1px solid rgba(69, 123, 157, 0.22);
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+.note-box-icon {
+  color: #457B9D;
+  font-size: 1rem;
+}
+
+.note-box-text {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #1D3557;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .journey-section {
+    padding: 3rem 2.5rem;
+  }
+  .journey-cards-container {
+    gap: 18px;
+  }
+  .journey-card {
+    padding: 22px 18px;
+    min-height: 400px;
+  }
+}
+
+/* Swap to single active card layout on mobile / tablet to prevent overflow */
+@media (max-width: 1024px) {
+  .journey-cards-container {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .journey-card {
+    display: none !important;
+  }
+
+  .journey-card.active {
+    display: flex !important;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-section {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey-section {
+    padding: 2rem 1rem;
+  }
+
+  .journey-title {
+    font-size: 1.8rem;
+  }
+
+  .journey-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Keep horizontal timeline on mobile with optimized smaller scale */
+  .journey-timeline-container {
+    padding: 0 5px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .journey-timeline-line {
+    position: absolute;
+    top: 18px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: #1D3557;
+    z-index: 1;
+  }
+
+  .journey-timeline-nodes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .journey-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .node-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+    border-width: 1.5px;
+  }
+
+  .node-label {
+    margin-top: 6px;
+    font-size: 0.72rem;
+  }
+
+  .node-date {
+    font-size: 0.62rem;
+    margin-top: 1px;
+  }
+
+  .journey-card {
+    padding: 16px 12px;
+    gap: 10px;
+  }
+
+  .journey-card-header-row {
+    gap: 8px;
+  }
+
+  .journey-card-header-right {
+    width: 50px;
+    height: 50px;
+  }
+
+  .journey-card-summary {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+}

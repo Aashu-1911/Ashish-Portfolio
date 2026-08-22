@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./components/About/About";
+import Journey from "./components/Journey/Journey";
 import SkillsTable from "./components/Skills/SkillTable";
 import ProjectsSection from "./components/Projects/ProjectSection";
 import ContactPage from "./components/Contact/ContactPage";
@@ -9,6 +10,7 @@ import useIntersectionObserver from "./UseIntersectionObserver";
 import "./App.css";
 
 const App = () => {
+  const journeyRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
 
@@ -19,6 +21,7 @@ const App = () => {
     }
   }, []);
 
+  const isJourneyVisible = useIntersectionObserver(journeyRef, { threshold: 0.1 });
   const isSkillsVisible = useIntersectionObserver(skillsRef, { threshold: 0.5 });
   const isProjectsVisible = useIntersectionObserver(projectsRef, { threshold: 0.1 });
 
@@ -32,6 +35,12 @@ const App = () => {
           className={`section ${isSkillsVisible ? "visible" : ""}`}
         >
           <SkillsTable id="skill-table" />
+        </div>
+        <div
+          ref={journeyRef}
+          className={`section ${isJourneyVisible ? "visible" : ""}`}
+        >
+          <Journey id="journey" />
         </div>
       </div>
 

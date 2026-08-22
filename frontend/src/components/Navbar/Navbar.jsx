@@ -18,6 +18,7 @@ const Navbar = ({ id }) => {
 
       const aboutElement = document.getElementById("about");
       const aboutDetailsElement = document.getElementById("about-details-header");
+      const journeyElement = document.getElementById("journey");
       const skillsElement = document.getElementById("skill-table");
       const projectsElement = document.getElementById("project-section");
       const contactElement = document.getElementById("contact");
@@ -28,6 +29,7 @@ const Navbar = ({ id }) => {
       };
 
       const aboutDetailsTop = getAbsTop(aboutDetailsElement);
+      const journeyTop = getAbsTop(journeyElement);
       const skillsTop = getAbsTop(skillsElement);
       const projectsTop = getAbsTop(projectsElement);
       const contactTop = getAbsTop(contactElement);
@@ -38,6 +40,8 @@ const Navbar = ({ id }) => {
         setActiveSection("projects");
       } else if (skillsElement && scrollPosition >= skillsTop) {
         setActiveSection("skills");
+      } else if (journeyElement && scrollPosition >= journeyTop) {
+        setActiveSection("journey");
       } else if (aboutDetailsElement && scrollPosition >= aboutDetailsTop) {
         setActiveSection("about");
       } else {
@@ -83,6 +87,12 @@ const Navbar = ({ id }) => {
           onClick={() => handleNavClick("about-details-header")}
         >
           About
+        </button>
+        <button
+          className={`nav-link ${activeSection === "journey" ? "active" : ""}`}
+          onClick={() => handleNavClick("journey")}
+        >
+          Journey
         </button>
         <button
           className={`nav-link ${activeSection === "skills" ? "active" : ""}`}
